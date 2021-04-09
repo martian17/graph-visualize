@@ -65,4 +65,4 @@ var Field = function(canvas){
             ctx.stroke();
         }
     };
-}
+};
