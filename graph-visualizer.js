@@ -4,6 +4,8 @@ var Field = function(canvas){
     var ctx = canvas.getContext("2d");
     var verts = {};
     var edges = {};
+    this.verts = verts;
+    this.edges = edges;
     var that = this;
     this.r = 5;
     
@@ -23,7 +25,7 @@ var Field = function(canvas){
     this.addEdge = function(v1,v2){
         var id = genid();
         edge = {
-            id,x,y,verts:[v1,v2]
+            id,verts:[v1,v2]
         };
         v1.edges[id] = edge;
         v2.edges[id] = edge;
@@ -53,12 +55,12 @@ var Field = function(canvas){
             ctx.closePath();
             ctx.fill();
             //drawing the number
-            ctx.strokeText(v.id,v.x,v.y);
+            ctx.strokeText(v.id,v.x+5,v.y-5);
         }
         for(var i in edges){
             var e = edges[i];
-            var v1 = edge.verts[0];
-            var v2 = edge.verts[1];
+            var v1 = e.verts[0];
+            var v2 = e.verts[1];
             ctx.beginPath();
             ctx.moveTo(v1.x,v1.y);
             ctx.lineTo(v2.x,v2.y);
